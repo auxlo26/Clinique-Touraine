@@ -35,8 +35,12 @@ export default function Home() {
               text columns at the bottom don't collide with it. */}
           <p
             aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-[34%] z-0 hidden -translate-y-1/2 select-none whitespace-nowrap text-center font-display font-semibold leading-none text-sage-400 lg:block"
-            style={{ fontSize: "clamp(7rem, 13.5vw, 12rem)", letterSpacing: "-0.025em" }}
+            className="pointer-events-none absolute inset-x-0 top-[42%] z-0 hidden -translate-y-1/2 select-none whitespace-nowrap text-center font-display font-medium leading-none lg:block"
+            style={{
+              fontSize: "clamp(8rem, 16vw, 14rem)",
+              letterSpacing: "-0.02em",
+              color: "#c9c9c4",
+            }}
           >
             TOURAINE
           </p>
