@@ -53,7 +53,7 @@ export default function Home() {
 
             {/* Eyebrow placed at the top of the hero, centered above the
                 dog so it reads as a label sitting over the photo. */}
-            <p className="absolute left-1/2 top-[5%] hidden -translate-x-1/2 select-none whitespace-nowrap text-center text-[1.275rem] font-bold uppercase leading-none tracking-[0.22em] text-terracotta-700 lg:block">
+            <p className="absolute left-1/2 top-[15%] hidden -translate-x-1/2 select-none whitespace-nowrap text-center text-[1.275rem] font-bold uppercase leading-none tracking-[0.22em] text-terracotta-700 lg:block">
               {t.home.heroEyebrow}
             </p>
 
