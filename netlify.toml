@@ -1,0 +1,17 @@
+# Netlify deploy config for Clinique Vétérinaire Touraine
+# The official Next.js runtime plugin is auto-installed when this file
+# is present and a Next.js project is detected. No publish directory
+# needs to be set explicitly.
+
+[build]
+  command = "npm run build"
+
+[build.environment]
+  # Pin a Node version that matches what the Next.js 16 runtime supports.
+  NODE_VERSION = "20"
+
+# Note: src/lib/store.ts writes booking and callback JSON files to /data.
+# That works in `next dev` but Netlify Functions have an ephemeral
+# filesystem, so demo data will not persist between requests on the
+# production deploy. Swap it for a real database (Netlify Blobs, Supabase,
+# Neon, etc.) before relying on the dashboard in production.
