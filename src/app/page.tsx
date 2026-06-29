@@ -31,59 +31,95 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border bg-paper">
-        {/* Full-width hero image (TOURAINE wordmark + Jack Russell already
-            composed by the client). Nothing painted over the photo, so the
-            composition stays exactly as designed. */}
-        <div className="relative mx-auto aspect-[2051/1142] w-full max-w-[1800px]">
-          <Image
-            src={heroImage}
-            alt={
-              locale === "fr"
-                ? "Portrait d'un Jack Russell sur fond clair, sous le mot TOURAINE"
-                : "Portrait of a Jack Russell on a light background, under the word TOURAINE"
-            }
-            fill
-            priority
-            sizes="(min-width: 1800px) 1800px, 100vw"
-            unoptimized
-            className="object-cover"
-          />
-        </div>
-
-        {/* Hero content below the image. Headline + CTAs left, subtitle +
-            service carousel right. */}
-        <Container className="grid gap-10 py-12 sm:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-16">
-          <div>
-            <Eyebrow>{t.home.heroEyebrow}</Eyebrow>
-            <h1 className="font-display text-4xl font-medium tracking-tight text-forest-950 text-balance sm:text-5xl lg:text-[2.85rem] lg:leading-[1.05]">
-              {t.home.heroTitle}
-            </h1>
-            <div className="mt-7 flex flex-wrap items-center gap-3">
-              <LinkButton href="/rendez-vous" size="lg">
-                {t.home.heroCtaPrimary}
-                <ArrowRight className="h-4 w-4" aria-hidden="true" />
-              </LinkButton>
-              <LinkButton href="#services" size="lg" variant="ghost">
-                {t.home.heroCtaSecondary}
-              </LinkButton>
-            </div>
-            <div className="mt-6 flex flex-wrap items-center gap-3">
-              <OpenBadge />
-              <span className="text-xs text-ink-300">* {t.home.sinceConfirmNote}</span>
-            </div>
-          </div>
-
-          <div className="lg:max-w-sm lg:justify-self-end">
-            <p className="mb-6 text-base leading-relaxed text-ink-500">{t.home.heroSub}</p>
-            <HeroCarousel
-              slides={t.home.services}
-              icons={SERVICE_ICONS}
-              prevLabel={t.common.prevSlide}
-              nextLabel={t.common.nextSlide}
-              goToLabel={t.common.goToSlide}
+        <div className="relative mx-auto w-full max-w-[1800px]">
+          {/* Hero image (Jack Russell + TOURAINE wordmark composed by the
+              client). On desktop, the content columns overlay the empty
+              cream space on each side of the dog. On mobile the image
+              stacks above the content so nothing crops the photo. */}
+          <div className="relative aspect-[2051/1142] w-full">
+            <Image
+              src={heroImage}
+              alt={
+                locale === "fr"
+                  ? "Portrait d'un Jack Russell sur fond clair, sous le mot TOURAINE"
+                  : "Portrait of a Jack Russell on a light background, under the word TOURAINE"
+              }
+              fill
+              priority
+              sizes="(min-width: 1800px) 1800px, 100vw"
+              unoptimized
+              className="object-cover"
             />
+
+            {/* Left overlay: eyebrow, headline, CTAs. Sits in the empty
+                cream space to the left of the dog on desktop only. */}
+            <div className="absolute bottom-[6%] left-[3%] hidden max-w-[28%] lg:block">
+              <Eyebrow>{t.home.heroEyebrow}</Eyebrow>
+              <h1 className="font-display text-3xl font-medium tracking-tight text-forest-950 text-balance lg:text-[2.4rem] lg:leading-[1.05] xl:text-[2.85rem]">
+                {t.home.heroTitle}
+              </h1>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <LinkButton href="/rendez-vous" size="lg">
+                  {t.home.heroCtaPrimary}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </LinkButton>
+                <LinkButton href="#services" size="lg" variant="ghost">
+                  {t.home.heroCtaSecondary}
+                </LinkButton>
+              </div>
+              <div className="mt-5 flex flex-wrap items-center gap-3">
+                <OpenBadge />
+                <span className="text-xs text-ink-300">* {t.home.sinceConfirmNote}</span>
+              </div>
+            </div>
+
+            {/* Right overlay: subtitle paragraph + service carousel. */}
+            <div className="absolute bottom-[6%] right-[3%] hidden w-[26%] lg:block">
+              <p className="mb-5 text-sm leading-relaxed text-ink-500">{t.home.heroSub}</p>
+              <HeroCarousel
+                slides={t.home.services}
+                icons={SERVICE_ICONS}
+                prevLabel={t.common.prevSlide}
+                nextLabel={t.common.nextSlide}
+                goToLabel={t.common.goToSlide}
+              />
+            </div>
           </div>
-        </Container>
+
+          {/* Mobile / tablet fallback: image stays above and content
+              stacks below, so nothing overlaps the dog on narrow widths. */}
+          <Container className="grid gap-10 py-10 sm:py-12 lg:hidden">
+            <div>
+              <Eyebrow>{t.home.heroEyebrow}</Eyebrow>
+              <h1 className="font-display text-4xl font-medium tracking-tight text-forest-950 text-balance sm:text-5xl">
+                {t.home.heroTitle}
+              </h1>
+              <div className="mt-7 flex flex-wrap items-center gap-3">
+                <LinkButton href="/rendez-vous" size="lg">
+                  {t.home.heroCtaPrimary}
+                  <ArrowRight className="h-4 w-4" aria-hidden="true" />
+                </LinkButton>
+                <LinkButton href="#services" size="lg" variant="ghost">
+                  {t.home.heroCtaSecondary}
+                </LinkButton>
+              </div>
+              <div className="mt-6 flex flex-wrap items-center gap-3">
+                <OpenBadge />
+                <span className="text-xs text-ink-300">* {t.home.sinceConfirmNote}</span>
+              </div>
+            </div>
+            <div>
+              <p className="mb-6 text-base leading-relaxed text-ink-500">{t.home.heroSub}</p>
+              <HeroCarousel
+                slides={t.home.services}
+                icons={SERVICE_ICONS}
+                prevLabel={t.common.prevSlide}
+                nextLabel={t.common.nextSlide}
+                goToLabel={t.common.goToSlide}
+              />
+            </div>
+          </Container>
+        </div>
       </section>
 
       <Section id="services">
