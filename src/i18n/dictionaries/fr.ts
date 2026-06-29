@@ -77,7 +77,7 @@ export const fr = {
   },
   home: {
     heroEyebrow: `Depuis ${1979}`,
-    heroTitle: "Prendre soin de vos animaux, à Gatineau, depuis 1979.",
+    heroTitle: "Nous prenons soin de vos animaux dans la région de l'Outaouais.",
     heroSub:
       "Suivi annuel, vaccination, chirurgie et pension. Prenez rendez-vous en ligne, en français ou en anglais, à toute heure.",
     heroCtaPrimary: "Prendre rendez-vous",

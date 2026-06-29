@@ -30,7 +30,7 @@ export function Eyebrow({ children, className }: { children: React.ReactNode; cl
   return (
     <p
       className={clsx(
-        "mb-3 text-xs font-semibold uppercase tracking-[0.18em] text-terracotta-600",
+        "mb-3 text-xs font-bold uppercase tracking-[0.22em] text-terracotta-700",
         className
       )}
     >

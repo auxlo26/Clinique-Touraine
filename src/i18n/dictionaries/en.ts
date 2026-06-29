@@ -77,7 +77,7 @@ export const en = {
   },
   home: {
     heroEyebrow: `Since ${1979}`,
-    heroTitle: "Caring for your animals, in Gatineau, since 1979.",
+    heroTitle: "We take care of your animals in the Outaouais region.",
     heroSub:
       "Wellness checkups, vaccination, surgery, and boarding. Book online in French or English, any time of day.",
     heroCtaPrimary: "Book an appointment",
