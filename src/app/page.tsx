@@ -51,10 +51,15 @@ export default function Home() {
               className="object-cover"
             />
 
-            {/* Left overlay: eyebrow, headline, CTAs. Sits in the empty
-                cream space to the left of the dog on desktop only. */}
+            {/* Eyebrow placed at the top of the hero, centered above the
+                dog so it reads as a label sitting over the photo. */}
+            <p className="absolute left-1/2 top-[5%] hidden -translate-x-1/2 select-none whitespace-nowrap text-center text-[1.275rem] font-bold uppercase leading-none tracking-[0.22em] text-terracotta-700 lg:block">
+              {t.home.heroEyebrow}
+            </p>
+
+            {/* Left overlay: headline, CTAs. Sits in the empty cream space
+                to the left of the dog on desktop only. */}
             <div className="absolute bottom-[6%] left-[3%] hidden max-w-[28%] lg:block">
-              <Eyebrow>{t.home.heroEyebrow}</Eyebrow>
               <h1 className="font-display text-3xl font-medium tracking-tight text-forest-950 text-balance lg:text-[2.4rem] lg:leading-[1.05] xl:text-[2.85rem]">
                 {t.home.heroTitle}
               </h1>
