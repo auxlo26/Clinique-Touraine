@@ -1,3 +1,4 @@
+import Image, { type StaticImageData } from "next/image";
 import type { LucideIcon } from "lucide-react";
 import { Container, Section, SectionTitle } from "@/components/ui/Container";
 import { LinkButton } from "@/components/ui/Button";
@@ -17,6 +18,7 @@ export function ServicePageLayout({
   sections,
   ctaTitle,
   icon,
+  photo,
   photoAlt,
   palette = 1,
   children,
@@ -27,6 +29,8 @@ export function ServicePageLayout({
   sections: readonly ServiceSection[];
   ctaTitle: string;
   icon: LucideIcon;
+  /** When provided, the real photo replaces the abstract PhotoPlaceholder. */
+  photo?: StaticImageData;
   photoAlt: string;
   palette?: 0 | 1 | 2;
   children?: React.ReactNode;
@@ -56,7 +60,20 @@ export function ServicePageLayout({
               </LinkButton>
             </div>
           </div>
-          <PhotoPlaceholder alt={photoAlt} icon={icon} palette={palette} className="relative aspect-[4/3] w-full" />
+          {photo ? (
+            <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] shadow-[0_30px_60px_-25px_rgba(17,32,26,0.45)] ring-1 ring-forest-950/10">
+              <Image
+                src={photo}
+                alt={photoAlt}
+                fill
+                sizes="(min-width: 1024px) 45vw, 90vw"
+                unoptimized
+                className="object-cover"
+              />
+            </div>
+          ) : (
+            <PhotoPlaceholder alt={photoAlt} icon={icon} palette={palette} className="relative aspect-[4/3] w-full" />
+          )}
         </Container>
       </section>
 

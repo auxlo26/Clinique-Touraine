@@ -3,6 +3,7 @@
 import { Scissors } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { ServicePageLayout } from "@/components/ServicePageLayout";
+import photo from "../../../public/images/service-chirurgies-routine.png";
 
 export default function ChirurgiesRoutinePage() {
   const { t, locale } = useLocale();
@@ -16,10 +17,11 @@ export default function ChirurgiesRoutinePage() {
       ctaTitle={t.chirurgiesRoutine.ctaTitle}
       icon={Scissors}
       palette={1}
+      photo={photo}
       photoAlt={
         locale === "fr"
-          ? "Salle d'opération vétérinaire propre et bien éclairée, prête pour une chirurgie de routine"
-          : "Clean, well-lit veterinary operating room, ready for a routine surgery"
+          ? "Vétérinaire vérifiant une fiche de préparation pendant qu'un Jack Russell calme attend sur la table"
+          : "Veterinarian reviewing a preparation checklist while a calm Jack Russell waits on the exam table"
       }
     />
   );

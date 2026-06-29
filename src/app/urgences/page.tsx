@@ -1,14 +1,15 @@
 "use client";
 
-import { HeartPulse, MessageCircle, Phone } from "lucide-react";
+import Image from "next/image";
+import { MessageCircle, Phone } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { Container, Section, SectionTitle } from "@/components/ui/Container";
 import { Button, LinkButton } from "@/components/ui/Button";
-import { PhotoPlaceholder } from "@/components/ui/PhotoPlaceholder";
 import { Reveal } from "@/components/ui/Reveal";
 import { OpenBadge } from "@/components/OpenBadge";
 import { CLINIC, EMERGENCY_REFERRAL } from "@/config/clinic";
 import { openChatWidget } from "@/lib/openChat";
+import urgencesPhoto from "../../../public/images/service-urgences.png";
 
 export default function UrgencesPage() {
   const { t, locale } = useLocale();
@@ -34,16 +35,20 @@ export default function UrgencesPage() {
               <OpenBadge />
             </div>
           </div>
-          <PhotoPlaceholder
-            alt={
-              locale === "fr"
-                ? "Équipe vétérinaire intervenant rapidement et calmement auprès d'un animal en salle d'urgence"
-                : "Veterinary team responding quickly and calmly to an animal in the emergency room"
-            }
-            icon={HeartPulse}
-            palette={1}
-            className="relative aspect-[4/3] w-full"
-          />
+          <div className="relative aspect-[4/3] w-full overflow-hidden rounded-[1.75rem] shadow-[0_30px_60px_-25px_rgba(17,32,26,0.45)] ring-1 ring-forest-950/10">
+            <Image
+              src={urgencesPhoto}
+              alt={
+                locale === "fr"
+                  ? "Vétérinaire posant un bandage bleu sur la patte d'un Jack Russell, devant un moniteur cardiaque actif"
+                  : "Veterinarian wrapping a blue bandage on a Jack Russell's paw with an active heart-rate monitor in the background"
+              }
+              fill
+              sizes="(min-width: 1024px) 45vw, 90vw"
+              unoptimized
+              className="object-cover"
+            />
+          </div>
         </Container>
       </section>
 

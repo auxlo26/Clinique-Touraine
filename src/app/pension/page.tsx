@@ -3,6 +3,7 @@
 import { BedDouble } from "lucide-react";
 import { useLocale } from "@/i18n/LocaleProvider";
 import { ServicePageLayout } from "@/components/ServicePageLayout";
+import photo from "../../../public/images/service-pension.png";
 
 export default function PensionPage() {
   const { t, locale } = useLocale();
@@ -16,10 +17,11 @@ export default function PensionPage() {
       ctaTitle={t.pension.ctaTitle}
       icon={BedDouble}
       palette={2}
+      photo={photo}
       photoAlt={
         locale === "fr"
-          ? "Chien confortablement installé dans un enclos de pension propre et spacieux"
-          : "Dog comfortably settled in a clean, spacious boarding kennel"
+          ? "Jack Russell détendu dans un panier confortable avec ses jouets, dans un enclos de pension lumineux"
+          : "Relaxed Jack Russell in a comfortable bed with toys, in a bright boarding enclosure"
       }
     />
   );
