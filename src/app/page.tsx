@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   Stethoscope,
@@ -18,7 +19,7 @@ import { LinkButton } from "@/components/ui/Button";
 import { OpenBadge } from "@/components/OpenBadge";
 import { Reveal } from "@/components/ui/Reveal";
 import { HeroCarousel } from "@/components/home/HeroCarousel";
-import { HeroPhoto } from "@/components/home/HeroPhoto";
+import heroImage from "../../public/images/hero.png";
 import { HOURS, dayLabel, formatHourLabel } from "@/config/clinic";
 
 const SERVICE_ICONS = [Stethoscope, Scissors, HeartPulse, BedDouble];
@@ -30,29 +31,31 @@ export default function Home() {
   return (
     <>
       <section className="relative overflow-hidden border-b border-border bg-paper">
-        <div className="relative mx-auto w-full max-w-7xl px-5 sm:px-8 lg:h-[92vh] lg:min-h-[720px] lg:max-h-[920px] lg:px-12">
-          {/* Massive wordmark, anchored in the upper portion of the hero so
-              text columns at the bottom don't collide with it. */}
-          <p
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-x-0 top-[42%] z-0 hidden -translate-y-1/2 select-none whitespace-nowrap text-center font-display font-medium leading-none lg:block"
-            style={{
-              fontSize: "clamp(8rem, 16vw, 14rem)",
-              letterSpacing: "-0.02em",
-              color: "#c9c9c4",
-            }}
-          >
-            TOURAINE
-          </p>
+        {/* Full-width hero image (TOURAINE wordmark + Jack Russell already
+            composed by the client). Nothing painted over the photo, so the
+            composition stays exactly as designed. */}
+        <div className="relative mx-auto aspect-[2051/1142] w-full max-w-[1800px]">
+          <Image
+            src={heroImage}
+            alt={
+              locale === "fr"
+                ? "Portrait d'un Jack Russell sur fond clair, sous le mot TOURAINE"
+                : "Portrait of a Jack Russell on a light background, under the word TOURAINE"
+            }
+            fill
+            priority
+            sizes="(min-width: 1800px) 1800px, 100vw"
+            unoptimized
+            className="object-cover"
+          />
+        </div>
 
-          {/* DOM order is text-first so the page reads naturally on mobile
-              and for screen readers. On desktop everything below is
-              absolutely positioned and the visual order is layered. */}
-
-          {/* Left column: eyebrow, headline, CTAs. */}
-          <div className="relative z-20 pt-12 lg:absolute lg:bottom-16 lg:left-12 lg:max-w-xs lg:pt-0">
+        {/* Hero content below the image. Headline + CTAs left, subtitle +
+            service carousel right. */}
+        <Container className="grid gap-10 py-12 sm:py-14 lg:grid-cols-[1.1fr_1fr] lg:gap-16 lg:py-16">
+          <div>
             <Eyebrow>{t.home.heroEyebrow}</Eyebrow>
-            <h1 className="font-display text-4xl font-medium tracking-tight text-forest-950 text-balance sm:text-5xl lg:text-[2.15rem] lg:leading-[1.1]">
+            <h1 className="font-display text-4xl font-medium tracking-tight text-forest-950 text-balance sm:text-5xl lg:text-[2.85rem] lg:leading-[1.05]">
               {t.home.heroTitle}
             </h1>
             <div className="mt-7 flex flex-wrap items-center gap-3">
@@ -70,23 +73,8 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Dog photo: in flow between text columns on mobile, absolutely
-              centered and full-height on desktop, bleeding vertically
-              through the wordmark. */}
-          <div className="relative z-10 mx-auto mt-10 aspect-[3/4] w-64 sm:w-80 lg:absolute lg:inset-y-0 lg:left-1/2 lg:mt-0 lg:h-full lg:w-auto lg:max-w-none lg:-translate-x-1/2">
-            <HeroPhoto
-              alt={
-                locale === "fr"
-                  ? "Portrait d'un golden retriever au regard doux, photographié en studio"
-                  : "Portrait of a golden retriever with a gentle gaze, photographed in studio"
-              }
-              className="relative h-full w-full"
-            />
-          </div>
-
-          {/* Right column: subtitle paragraph + service carousel. */}
-          <div className="relative z-20 mt-10 pb-12 lg:absolute lg:bottom-16 lg:right-12 lg:mt-0 lg:max-w-xs lg:pb-0">
-            <p className="mb-6 text-base leading-relaxed text-ink-500 lg:text-right">{t.home.heroSub}</p>
+          <div className="lg:max-w-sm lg:justify-self-end">
+            <p className="mb-6 text-base leading-relaxed text-ink-500">{t.home.heroSub}</p>
             <HeroCarousel
               slides={t.home.services}
               icons={SERVICE_ICONS}
@@ -95,7 +83,7 @@ export default function Home() {
               goToLabel={t.common.goToSlide}
             />
           </div>
-        </div>
+        </Container>
       </section>
 
       <Section id="services">
