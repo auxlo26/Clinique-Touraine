@@ -32,9 +32,17 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+!.env.example
 
 # vercel
 .vercel
+
+# local demo data store (bookings, callbacks, contact messages)
+/data
+
+# Claude Code local settings and bundled skill scripts (keep launch.json shared)
+/.claude/settings.local.json
+/.claude/skills/
 
 # typescript
 *.tsbuildinfo
